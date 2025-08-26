@@ -187,33 +187,75 @@
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+/* Glassmorphism Navbar */
+.navbar-glass {
+    background: rgba(255, 255, 255, 0.08); /* Transparent white */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+/* Glassmorphism Navbar */
+.navbar-glass {
+    background: rgba(84, 28, 28, 0.3); /* Semi-transparent dark brown */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+}
 
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
+.navbar-glass:hover {
+    background: rgba(84, 28, 28, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
 
-        .nav-link:hover {
-            color: #F28C1A;
-            /* Accent color on hover */
-        }
+/* Navbar links */
+.navbar-glass .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            display: block;
-            margin-top: 5px;
-            right: 0;
-            background: #F28C1A;
-            transition: width 0.3s ease;
-        }
+.navbar-glass .nav-link:hover {
+    color: #F28C1A !important;
+}
 
-        .nav-link:hover::after {
-            width: 100%;
-            left: 0;
-        }
+.navbar-glass .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #F28C1A;
+    transition: width 0.3s ease;
+}
+
+.navbar-glass .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Hamburger icon */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1); /* make it white */
+}
+
+/* Navbar scroll effect */
+.navbar-scrolled {
+    background: rgba(84, 28, 28, 0.7);
+    backdrop-filter: blur(20px);
+}
 
         /* Footer Styles */
         .site-footer {
@@ -232,9 +274,22 @@
         }
 
         @media (max-width: 768px) {
-          #page-content {
-            margin-top: 25%; /* or 10% depending on your need */
+            .site-header {
+                margin-top: 2vh;
+            }
+            #page-content {
+                margin-top: 25%; /* or 10% depending on your need */
           }
+
+        }
+
+        /* Ticket Button  */
+        .ticket_btn {
+            margin-top: 2%;
+        }
+
+        #countdown-container {
+            margin: 5vh 0vh;
         }
 
     </style>
@@ -245,22 +300,47 @@
     <div id="loader" class="animated-gradient">
         <img src="assets/img/logo.png" alt="Loading Logo" class="loader-logo">
     </div>
+<header class="site-header bg-primary-800/50 backdrop-blur-md border-b border-white/10">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assets/img/logo2.jpg" class="h-12 w-12 rounded-full object-cover border-2 border-orange-400 p-1">
+      <span class="font-bold text-xl hidden sm:block text-white">INSPIRA '25</span>
+    </a>
 
-    <header class="site-header">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="assets/img/logo2.jpg" class="h-12 w-12 rounded-full object-cover border-2 border-orange-400 p-1">
-                <span class="font-bold text-xl hidden sm:block">INSPIRA '25</span>
-            </a>
-            <nav>
-                <ul class="flex items-center space-x-8">
-                    <li><a href="index.html" class="nav-link font-semibold text-orange-400">Home</a></li>
-                    <li><a href="about.html" class="nav-link font-semibold">About</a></li>
-                    <li><a href="ticket.html" class="nav-link font-semibold">Get Ticket</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Hamburger / Close Button for mobile -->
+    <button id="nav-toggle" class="sm:hidden text-white focus:outline-none">
+      <!-- Hamburger icon -->
+      <svg id="hamburger" class="h-8 w-8 block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <!-- Close icon -->
+      <svg id="close" class="h-8 w-8 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <!-- Desktop Navigation -->
+    <nav id="nav-menu" class="hidden sm:flex space-x-8 items-center">
+      <a href="index.html" class="nav-link font-semibold text-orange-400 hover:text-white transition">Home</a>
+      <a href="about.html" class="nav-link font-semibold text-white hover:text-orange-400 transition">About</a>
+      <a href="ticket.html" class="nav-link font-semibold text-white hover:text-orange-400 transition">Get Ticket</a>
+      <a href="#" class="nav-link font-semibold text-white hover:text-orange-400 transition">Schedule</a>
+    </nav>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav id="nav-menu-mobile" class="sm:hidden hidden px-6 pb-4 space-y-2 bg-primary-800/50 backdrop-blur-md border-t border-white/10 rounded-b-lg">
+    <a href="index.html" class="block font-semibold text-orange-400 hover:text-white transition">Home</a>
+    <a href="about.html" class="block font-semibold text-white hover:text-orange-400 transition">About</a>
+    <a href="ticket.html" class="block font-semibold text-white hover:text-orange-400 transition">Get Ticket</a>
+    <a href="#" class="block font-semibold text-white hover:text-orange-400 transition">Schedule</a>
+  </nav>
+</header>
+
+
+
+
 
     <div id="page-content" class="min-h-screen w-full flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
 
@@ -277,11 +357,12 @@
                 <p>Organized by the English Speech Club 23/24</p>
                 <p>Faculty of Applied Science, Rajarata University of Sri Lanka</p>
             </div>
-            <div><a href="ticket.html" target="_self"
-    class="glow-button flex items-center gap-2 btn-zoom text-white font-bold py-2 px-5 rounded-full">
-    <i class="bi bi-ticket-detailed-fill"></i>
-    Get Your Ticket
-</a></div>
+            <div class="ticket_btn">
+                <a href="ticket.html" target="_self" class="glow-button flex items-center gap-2 btn-zoom text-white font-bold py-2 px-5 rounded-full">
+                <i class="bi bi-ticket-detailed-fill"></i>
+                <p>Get Your Ticket</p>
+                </a>
+            </div>
 
             <div id="countdown-container" class="w-full max-w-2xl mt-12 mb-12 fade-in-up-5">
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
@@ -350,6 +431,20 @@
     <!-- Interactive Canvas -->
     <canvas id="interactiveCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
     <script>
+    // Toggle mobile menu
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+        navMenu.classList.toggle('flex');
+        navMenu.classList.toggle('flex-col');
+        navMenu.classList.toggle('space-y-4');
+        navMenu.classList.toggle('space-x-0');
+        navMenu.classList.toggle('mt-4');
+    });
+</script>
+<script>
         // --- SCRIPT FOR LOADER ---
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
@@ -474,6 +569,8 @@
             );
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
